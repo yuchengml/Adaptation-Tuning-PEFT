@@ -35,7 +35,14 @@ This comparison aims to provide relevant experimental data as a reference for ot
 <!-- TO DO List -->
 ## To-do List
 - [ ] Prepare datasets
-- [ ] Fine-tune on PEFT
+- Pre-process data
+  - [ ] Filtering
+- [ ] Create model
+- Fine-tuning methods
+  - [ ] P-Tuning
+  - [ ] Prefix Tuning
+  - [ ] LoRA
+- [ ] Experiments on W&B
 
 
 <!-- LICENSE -->
