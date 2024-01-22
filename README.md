@@ -34,9 +34,9 @@ This comparison aims to provide relevant experimental data as a reference for ot
 
 <!-- TO DO List -->
 ## To-do List
-- [ ] Prepare datasets
+- [x] Prepare datasets
 - Pre-process data
-  - [ ] Filtering
+  - [x] Filtering
 - [ ] Create model
 - Fine-tuning methods
   - [ ] P-Tuning
