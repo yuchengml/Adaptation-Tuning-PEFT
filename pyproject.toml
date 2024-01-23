@@ -13,6 +13,7 @@ peft = "^0.7.1"
 transformers = "^4.36.2"
 wandb = "^0.16.2"
 tqdm = "^4.66.1"
+datasets = "^2.16.1"
 
 
 [build-system]
