@@ -1,3 +1,5 @@
+from typing import Tuple, Dict
+
 import pandas as pd
 import datasets
 
@@ -7,14 +9,15 @@ import csv
 
 logger = get_logger()
 
-_labels = ['運動', '藝術', '交通', '服飾', '金融', '建築', '科技', '旅遊',
-           '遊戲', '美食', '親子', '醫療', '教育', '寵物', '娛樂']
+_labels = ['運動', '藝術', '交通', '服飾', '金融', '建築', '科技', '旅遊', '娛樂', '美食', '生活', '醫療', '教育',
+           '寵物']
 
 
 def clean_data(
         df: pd.DataFrame,
         text_col: str = "post_text",
-        label_col: str = "cate") -> pd.DataFrame:
+        label_col: str = "cate"
+) -> pd.DataFrame:
     # Simple preprocess
     df = df.dropna(subset=[text_col, label_col]).drop_duplicates(subset=[text_col, label_col])
 
@@ -47,17 +50,21 @@ def view_data_cate(
 def prepare_dataset(
         train_csv_path: str = None,
         test_csv_path: str = None,
-        label_col: str = "label"):
+        raw_label_col:str = "cate",
+        label_col: str = "label"
+) -> Tuple[datasets.DatasetDict, Dict[str, int]]:
     """Prepare transformers dataset from csv
 
 
     Args:
         train_csv_path:
-            CSV path to load raw data
+            CSV path to load raw data.
         test_csv_path:
-            Partition data in csv as testing data
+            Partition data in csv as testing data.
+        raw_label_col:
+            Label column name in raw data.
         label_col:
-            Label column name
+            Label column name.
     Returns:
 
     """
@@ -70,7 +77,7 @@ def prepare_dataset(
     # Fetch training data
     df = pd.read_csv(train_csv_path, quoting=csv.QUOTE_ALL)
 
-    df = clean_data(df)
+    df = clean_data(df, label_col=raw_label_col)
 
     # Fetch testing data
     test_df = pd.read_csv(test_csv_path, quoting=csv.QUOTE_ALL)
