@@ -34,11 +34,13 @@ This comparison aims to provide relevant experimental data as a reference for ot
 
 <!-- TO DO List -->
 ## To-do List
+### Sequence Classification
 - [x] Prepare datasets
 - Pre-process data
   - [x] Filtering
-- [ ] Create model
-- Fine-tuning methods
+- Create models
+  - [x] Sequence classification model
+- Implement fine-tuning methods
   - [ ] P-Tuning
   - [ ] Prefix Tuning
   - [ ] LoRA
