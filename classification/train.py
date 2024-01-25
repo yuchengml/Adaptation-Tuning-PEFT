@@ -13,7 +13,7 @@ logger = get_logger()
 
 
 def train_automodel(
-        train_csv_path: str = None,
+        train_csv_path: str,
         test_csv_path: str = None,
         pretrain_model: str = "prebuilt_model/chinese-roberta-wwm-ext-large",
         output_dir: str = "prebuilt_model",
@@ -27,9 +27,9 @@ def train_automodel(
 
     Args:
         train_csv_path:
-            CSV path to load raw data. If `None`, load data from Bigquery.
+            CSV path to load raw data.
         test_csv_path:
-            Partition data in csv as testing data.  If `None`, load data from Bigquery.
+            Partition data in csv as testing data.  If `None`, split data from training.
         pretrain_model:
             Assign transformers pretrained model path or name
         output_dir:

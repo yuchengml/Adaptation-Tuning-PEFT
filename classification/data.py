@@ -1,6 +1,7 @@
-from typing import Tuple, Dict
+from typing import Tuple, Dict, Union
 
 import pandas as pd
+import numpy as np
 import datasets
 
 from classification.filters import InvalidCharacterFilter, URLFilter
@@ -48,23 +49,28 @@ def view_data_cate(
 
 
 def prepare_dataset(
-        train_csv_path: str = None,
+        train_csv_path: str,
         test_csv_path: str = None,
-        raw_label_col:str = "cate",
-        label_col: str = "label"
+        test_size: Union[int, float] = 0.2,
+        raw_label_col: str = "cate",
+        label_col: str = "label",
+        random_state: int = 42
 ) -> Tuple[datasets.DatasetDict, Dict[str, int]]:
     """Prepare transformers dataset from csv
-
 
     Args:
         train_csv_path:
             CSV path to load raw data.
         test_csv_path:
             Partition data in csv as testing data.
+        test_size:
+            Split data from training data. Unused when `test_csv_path` is not `None`.
         raw_label_col:
             Label column name in raw data.
         label_col:
             Label column name.
+        random_state:
+            Random seed.
     Returns:
 
     """
@@ -76,13 +82,18 @@ def prepare_dataset(
     logger.info("Prepare training and testing data")
     # Fetch training data
     df = pd.read_csv(train_csv_path, quoting=csv.QUOTE_ALL)
-
     df = clean_data(df, label_col=raw_label_col)
+    # Shuffle the training data
+    df = df.sample(frac=1, random_state=random_state).reset_index(drop=True)
 
-    # Fetch testing data
-    test_df = pd.read_csv(test_csv_path, quoting=csv.QUOTE_ALL)
-
-    test_df = clean_data(test_df)
+    # Fetch testing data from csv or training data
+    if test_csv_path is None:
+        test_size = int(len(df) * test_size) + 1 if isinstance(test_size, float) else test_size
+        test_df = df[:test_size]
+        df = df[test_size:]
+    else:
+        test_df = pd.read_csv(test_csv_path, quoting=csv.QUOTE_ALL)
+        test_df = clean_data(test_df)
 
     logger.info(f"Train data: {view_data_cate(df)}")
     logger.info(f"Test data: {view_data_cate(test_df)}")
@@ -92,8 +103,8 @@ def prepare_dataset(
     test_df[label_col] = test_df[label_col].map(lambda l: label_dict[l])
 
     # Create datasets
-    train_ds = datasets.Dataset.from_pandas(df).shuffle(seed=42)
-    test_ds = datasets.Dataset.from_pandas(test_df).shuffle(seed=42)
+    train_ds = datasets.Dataset.from_pandas(df).shuffle(seed=random_state)
+    test_ds = datasets.Dataset.from_pandas(test_df)
     ds = datasets.DatasetDict({"train": train_ds, "test": test_ds})
 
     return ds, label_dict
