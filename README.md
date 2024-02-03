@@ -41,7 +41,7 @@ This comparison aims to provide relevant experimental data as a reference for ot
 - Create models
   - [x] Sequence classification model
 - Implement fine-tuning methods
-  - [ ] P-Tuning
+  - [x] P-Tuning
   - [x] Prefix Tuning
   - [ ] LoRA
 - [ ] Experiments on W&B
