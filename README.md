@@ -43,7 +43,7 @@ This comparison aims to provide relevant experimental data as a reference for ot
 - Implement fine-tuning methods
   - [x] P-Tuning
   - [x] Prefix Tuning
-  - [ ] LoRA
+  - [x] LoRA
 - [ ] Experiments on W&B
 
 
