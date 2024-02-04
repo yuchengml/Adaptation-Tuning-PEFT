@@ -46,6 +46,6 @@ if __name__ == '__main__':
         'fit_peft_w_prefix_tuning_to_post': fit_peft_w_prefix_tuning_to_post,
         'fit_peft_w_p_tuning_to_dev': fit_peft_w_p_tuning_to_dev,
         'fit_peft_w_p_tuning_to_post': fit_peft_w_p_tuning_to_post,
-        'fit_peft_w_lora_to_dev': fit_peft_w_p_tuning_to_dev,
-        'fit_peft_w_lora_to_post': fit_peft_w_p_tuning_to_post
+        'fit_peft_w_lora_to_dev': fit_peft_w_lora_to_dev,
+        'fit_peft_w_lora_to_post': fit_peft_w_lora_to_post
     })
