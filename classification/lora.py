@@ -73,7 +73,7 @@ def train_peft_model_w_lora(
     # Define preprocess function to preprocess raw data
     def preprocess_function(examples: Dict[str, Any]):
         # return tokenizer(examples[text_col], truncation=True)
-        return tokenizer(examples[text_col], truncation=True, max_length=512 - n_virtual_tokens)
+        return tokenizer(examples[text_col], truncation=True, max_length=512)
 
     # Do preprocessing
     tokenized_posts = ds.map(preprocess_function,
