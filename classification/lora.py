@@ -16,7 +16,7 @@ logger = get_logger()
 def train_peft_model_w_lora(
         train_csv_path: str,
         test_csv_path: str = None,
-        pretrain_model: str = "prebuilt_model/chinese-roberta-wwm-ext-large",
+        pretrain_model: str = "prebuilt_model/chinese-roberta-wwm-ext",
         output_dir: str = "prebuilt_model",
         text_col: str = "text",
         label_col: str = "label",
@@ -61,7 +61,7 @@ def train_peft_model_w_lora(
     n_labels = len(label_dict)
 
     if not os.path.exists(pretrain_model):
-        pretrain_model = "hfl/chinese-roberta-wwm-ext-large"
+        pretrain_model = "hfl/chinese-roberta-wwm-ext"
 
     # Create tokenizer
     try:
