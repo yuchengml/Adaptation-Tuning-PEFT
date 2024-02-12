@@ -85,7 +85,7 @@ def train_peft_model_w_lora(
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
     # LoRA Cconfig
-    peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=16, lora_alpha=16, lora_dropout=0.1,
+    peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=32, lora_alpha=16, lora_dropout=0.1,
                              bias="all")
 
     # Create classification model
