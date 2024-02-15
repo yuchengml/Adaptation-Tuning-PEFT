@@ -4,6 +4,10 @@
 <br />
 <div align="center">
   <h3 align="center">Adaptation-Tuning-PEFT</h3>
+
+  <p align="center">
+    <a href="https://api.wandb.ai/links/yuchengml/1ev46x8s">[W&B Report]</a>
+  </p>
 </div>
 
 
@@ -19,6 +23,7 @@
     </li>
     <li><a href="#to-do-list">To-do List</a></li>
     <li><a href="#license">License</a></li>
+    <li><a href="#experiments">Experiments</a></li>
   </ol>
 </details>
 
@@ -44,13 +49,16 @@ This comparison aims to provide relevant experimental data as a reference for ot
   - [x] P-Tuning
   - [x] Prefix Tuning
   - [x] LoRA
-- [ ] Experiments on W&B
+- [x] Experiments on W&B
 
-
+https://api.wandb.ai/links/yuchengml/1ev46x8s
 <!-- LICENSE -->
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
 
+<!-- EXPERIMENTS -->
+## Experiments
+- [W&B Report](https://api.wandb.ai/links/yuchengml/1ev46x8s)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

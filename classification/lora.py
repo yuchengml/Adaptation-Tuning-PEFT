@@ -16,7 +16,7 @@ logger = get_logger()
 def train_peft_model_w_lora(
         train_csv_path: str,
         test_csv_path: str = None,
-        pretrain_model: str = "prebuilt_model/chinese-roberta-wwm-ext-large",
+        pretrain_model: str = "prebuilt_model/bert-base-chinese",
         output_dir: str = "prebuilt_model",
         text_col: str = "text",
         label_col: str = "label",
@@ -61,7 +61,7 @@ def train_peft_model_w_lora(
     n_labels = len(label_dict)
 
     if not os.path.exists(pretrain_model):
-        pretrain_model = "hfl/chinese-roberta-wwm-ext-large"
+        pretrain_model = "bert-base-chinese"
 
     # Create tokenizer
     try:
@@ -85,7 +85,7 @@ def train_peft_model_w_lora(
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
     # LoRA Cconfig
-    peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=16, lora_alpha=16, lora_dropout=0.1,
+    peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=32, lora_alpha=16, lora_dropout=0.1,
                              bias="all")
 
     # Create classification model
